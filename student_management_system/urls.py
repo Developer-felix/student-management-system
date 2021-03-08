@@ -19,6 +19,9 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 
+admin.site.site_header = "Student Management System"
+admin.site.site_title = "Student Management System"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('student_management_app.urls'))
