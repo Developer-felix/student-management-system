@@ -84,16 +84,17 @@
                   Sign In
                 </button>
               </div>
-
-              {% if messages %}
-              <div class="col-12">
-                {% for message in messages %} {% if message.tags == 'error' %}
-                <div class="alerts alert-danger" style="margi-top: 10px">
-                  {{message}}
+              <div class="form-group">
+                {% if messages %}
+                <div class="col-12">
+                  {% for message in messages %} {% if message.tags == 'error' %}
+                  <div class="alerts alert-danger" style="margi-top: 10px">
+                    {{message}}
+                  </div>
+                  {% endif %} {% endfor %}
                 </div>
-                {% endif %} {% endfor %}
+                {% endif %}
               </div>
-              {% endif %}
               <!-- /.col -->
             </div>
           </form>
