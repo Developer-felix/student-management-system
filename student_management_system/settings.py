@@ -128,3 +128,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #register custom user model here
 AUTH_USER_MODEL = "student_management_app.CustomUser"
+
+#register the email backend
+AUTHENTICATION_BACKEND = ['student_management_app.EmailBackEnd.EmailBackEnd']
+
+# AUTHENTICATION_BACKEND = (
+#     "student_management_app.backends.EmailBackend",
+# )
+# AUTHENTICATION_BACKENDS = ['path.to.auth.module.EmailBackend']
