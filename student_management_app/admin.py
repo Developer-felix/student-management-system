@@ -1,7 +1,12 @@
 from django.contrib import admin
 
-from .models import AdminHOD,Attendance,Courses,Staffs,Subject,Student,NotificationStaffs,NotificationStudent,LeaveReportStaffs,LeaveReportStudent,FeedBackStaffs,FeedBackStudent,AttendanceReport
+from .models import AdminHOD,Attendance,Courses,Staffs,Subject,Student,NotificationStaffs,NotificationStudent,LeaveReportStaffs,LeaveReportStudent,FeedBackStaffs,FeedBackStudent,AttendanceReport,CustomUser
 
+from django.contrib.auth.admin import UserAdmin
+#if you dont register a blank usermodel the passwords will not be encripted
+class UserModel(UserAdmin):
+    pass
+admin.site.register(CustomUser,UserModel)
 admin.site.register(AdminHOD)
 admin.site.register(Attendance)
 admin.site.register(Courses)
