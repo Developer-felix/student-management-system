@@ -142,6 +142,24 @@ class NotificationStaffs(models.Model):
     objects = models.Manager()
 
 
+@receiver(post_save, sender=CustomUser)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        if instance.user_type == 1:
+            AdminHOD.objects.create(admin=instance)
+        if instance.user_type == 2:
+            Staffs.objects.create(admin=instance)
+        if instance.user_type == 3:
+            Student.objects.create(admin=instance)
+
+@receiver(post_save, sender=CustomUser)
+def save_user_profile(sender, instance, **kwargs):
+    if instance.user_type == 1:
+        instance.adminhod.save()
+    if instance.user_type == 2:
+        instance.staffs.save()
+    if instance.user_type == 3:
+        instance.student.save()
 
 
 
