@@ -1,0 +1,104 @@
+{% extends 'hod_template/base_template.html' %}{% block main_content %} {
+<div class="content">
+  <div class="container-fluid"></div>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Add Staff</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form role="form" method="POST" action="add_staff_save">
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="form-group">
+              <label>Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="form-group">
+              <label>password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="password"
+              />
+            </div>
+            <div class="form-group">
+              <label>text</label>
+              <input
+                type="text"
+                class="form-control"
+                name="text"
+                placeholder="text"
+              />
+            </div>
+            <div class="form-group">
+              <label>First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="first_name"
+                placeholder="First Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="last_name"
+                placeholder="Last Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Username</label>
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="User Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="first_name"
+                placeholder="First Name"
+              />
+            </div>
+            <div class="form-group">
+              <label>Adress</label>
+              <input
+                type="text"
+                class="form-control"
+                name="address"
+                placeholder="Adress"
+              />
+            </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">
+              Add Staff
+            </button>
+          </div>
+        </form>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+</div>
+{% endblock main_content %}
