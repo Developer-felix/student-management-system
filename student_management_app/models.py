@@ -28,6 +28,10 @@ class Courses(models.Model):
     updated_ad = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
+    return __str__(self):
+        return self.course
+    
+
 
 class Student(models.Model):
     id = models.AutoField(primary_key=True)
@@ -57,6 +61,10 @@ class Staffs(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
+
+    def __str__(self):
+        return f'{self.admin.first_name}  {self.admin.first_name}'
+    
 
 
 class Subject(models.Model):
