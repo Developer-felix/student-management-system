@@ -56,6 +56,8 @@ def add_student(request):
     return render(request, 'hod_template/add_student_template.html',{"courses":courses})
 
 
+
+
 def add_student_save(request):
     if request.method != "POST":
         return HttpResponse("Method not allow")
@@ -71,9 +73,9 @@ def add_student_save(request):
         course_id = request.POST.get("course")
         sex = request.POST.get("sex")
         try:
-            user = CustomUser.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email, user_type=2)
+            user = CustomUser.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email, user_type=3)
             user.student.address = address
-            course_obj = Courses.objects.get()
+            course_obj = Courses.objects.get(id=course_id)
             user.student.course_id = course_obj
             user.student.session_start_year = session_start
             user.student.session_end_year = session_end
