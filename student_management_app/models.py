@@ -23,13 +23,14 @@ class AdminHOD(models.Model):
 
 class Courses(models.Model):
     id = models.AutoField(primary_key=True)
-    course = models.CharField(max_length=255)
+    course_name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     updated_ad = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
-    return __str__(self):
-        return self.course
+    def __str__(self):
+        return self.course_name
+    
     
 
 
