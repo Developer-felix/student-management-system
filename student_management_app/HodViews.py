@@ -43,7 +43,7 @@ def add_course_save(request):
     else:
         course = request.POST.get("course")
         try:
-            course_model = Courses(course=course)
+            course_model = Courses(course_name=course)
             course_model.save()
             messages.success(request,"Successfully added Course")
             return HttpResponseRedirect("/add_course")
