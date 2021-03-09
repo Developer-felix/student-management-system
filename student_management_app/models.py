@@ -50,6 +50,10 @@ class Student(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
 
+    def __str__(self):
+        return f'{self.admin.first_name}  {self.admin.last_name} - {self.gender}'
+    
+
 
 
 class Staffs(models.Model):
@@ -71,7 +75,7 @@ class Staffs(models.Model):
 class Subject(models.Model):
     id = models.AutoField(primary_key=True)
     subject_name = models.CharField(max_length=255)
-    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Courses, on_delete=models.CASCADE,default=1)
     staff_id = models.ForeignKey(Staffs, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -159,7 +163,7 @@ def create_user_profile(sender, instance, created, **kwargs):
         if instance.user_type == 2:
             Staffs.objects.create(admin=instance)
         if instance.user_type == 3:
-            Student.objects.create(admin=instance)
+            Student.objects.create(admin=instance,course_id=Courses.objects.get(id=1),session_start_year="2021-01-01",session_end_year="2022-01-01",address="",profile_pic="",gender="")
 
 @receiver(post_save, sender=CustomUser)
 def save_user_profile(sender, instance, **kwargs):

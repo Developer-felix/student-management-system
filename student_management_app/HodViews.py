@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -58,6 +59,8 @@ def add_student(request):
 
 
 
+
+
 def add_student_save(request):
     if request.method != "POST":
         return HttpResponse("Method not allow")
@@ -77,14 +80,17 @@ def add_student_save(request):
             user.student.address = address
             course_obj = Courses.objects.get(id=course_id)
             user.student.course_id = course_obj
+        # print(course_obj)
+        # start_date = datetime.datetime.strptime(session_start,'%y-%m-%d').strftime('%Y-%m-%d')
+        # end_date = datetime.datetime.strptime(session_end,'%y-%m-%d').strftime('%Y-%m-%d')
+
             user.student.session_start_year = session_start
             user.student.session_end_year = session_end
             user.student.gender = sex
             user.student.profile_pic = ""
             user.save()
-            # messages.success(request,"Successfully added Staff")
-            messages.success(request,"Successfully added Student")
+            messages.success(request, "Successfully added Student")
             return HttpResponseRedirect("/add_student")
         except:
-            messages.error(request,"Failed to add Student")
+            messages.error(request, "Failed to add Student")
             return HttpResponseRedirect("/add_student")
