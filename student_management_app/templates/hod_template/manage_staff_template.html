@@ -58,7 +58,13 @@
                       <td>{{staff.address}}</td>
                       <td>{{staff.admin.last_login}}</td>
                       <td>{{staff.admin.date_joined}}</td>
-                      <td> <a href="/edit/staff/{{staff.admin.id}}" class="btn btn-success">Edit</a> </td>
+                      <td>
+                        <a
+                          href="/edit_staff/{{staff.admin_id}}"
+                          class="btn btn-success"
+                          >Edit</a
+                        >
+                      </td>
                     </tr>
                     {% endfor %}
                   </tbody>

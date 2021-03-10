@@ -129,4 +129,8 @@ def manage_course(request):
 
 def manage_subject(request):
     subjects = Subject.objects.all()
-    return render(request,"hod_template/manage_subject_template.html",{"subjects":subjects})
+    return render(request, "hod_template/manage_subject_template.html", {"subjects": subjects})
+
+def edit_staff(request, staff_id):
+    staff = Staffs.objects.get(admin=staff_id)
+    return render(request,'hod_template/edit_staff_template.html',{"staff":staff})   
