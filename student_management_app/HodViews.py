@@ -2,7 +2,7 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from .models import CustomUser,Staffs,Courses,Student
+from .models import CustomUser,Staffs,Courses,Student,Subject
 
 def admin_home(request):
     return render(request, 'hod_template/home_content.html')
@@ -98,4 +98,19 @@ def add_subject(request):
     return render(request,'hod_template/add_subject_template.html',{"courses":courses, "staffs":staffs})
 
 def add_subject_save(request):
-    pass
+    if request.method != "POST":
+        return HttpResponse("<h2> Method Not Allow </h2>" )
+    else:
+        subject_name = request.POST.get("subject_name")
+        course_id = request.POST.get("course")
+        course = Courses.objects.get(id=course_id)
+        staff_id = request.POST.get("staff")
+        staff = CustomUser.objects.get(id=staff_id)
+        try:
+            subject = Subject(subject_name=subject_name, course_id=course, staff_id=staff)
+            subject.save()
+            messages.success(request, "Successfully added Subject")
+            return HttpResponseRedirect("/add_subject")
+        except:
+            messages.error(request, "Failed to add Subject")
+            return HttpResponseRedirect("/add_subject")
