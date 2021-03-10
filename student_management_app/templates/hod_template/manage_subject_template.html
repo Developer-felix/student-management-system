@@ -1,0 +1,77 @@
+{% extends 'hod_template/base_template.html' %}{% block main_content %}
+<div class="content">
+  <div class="container-fluid"></div>
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <!-- /.card-header -->
+        <!-- form start -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Subject Details</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px">
+                    <input
+                      type="text"
+                      name="table_search"
+                      class="form-control float-right"
+                      placeholder="Search"
+                    />
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>subject Name</th>
+                      <th>Course Name</th>
+                      <th>Course ID</th>
+                      <th>Staff Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for subject in subjects %}
+                    <tr>
+                      <td>{{subject.id}}</td>
+                      <td>{{subject.subject_name}}</td>
+                      <td>{{subject.course_id.course_name}}</td>
+                      <td>{{subject.course_id.id}}</td>
+                      <td>
+                        <a
+                          href="/edit/subject/{{subject.admin.id}}"
+                          class="btn btn-success"
+                          >Edit</a
+                        >
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!--/.col (left) -->
+  </div>
+</div>
+{% endblock main_content %}

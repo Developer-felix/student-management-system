@@ -27,6 +27,7 @@
     />
     {% block custom_css %}{% endblock custom_css %}
   </head>
+
   <!--
 BODY TAG OPTIONS:
 =================
@@ -79,7 +80,7 @@ to get the desired effect
       <!-- /.navbar -->
 
       <!-- Main Sidebar Container -->
-      {% include 'hod_template/sidebar_content.html' %}
+      {% include 'hod_template/sidebar_content.html' with user=user %}
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
