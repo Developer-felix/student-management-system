@@ -2,7 +2,7 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from .models import CustomUser,Staffs,Courses,Student,Subject
+from .models import CustomUser,Staffs,Courses,Student,Subject,Courses
 
 def admin_home(request):
     return render(request, 'hod_template/home_content.html')
@@ -121,4 +121,8 @@ def manage_staff(request):
 
 def manage_student(request):
     students = Student.objects.all()
-    return render(request,"hod_template/manage_student_template.html",{"students":students})
+    return render(request, "hod_template/manage_student_template.html", {"students": students})
+
+def manage_course(request):
+    courses = Courses.objects.all()
+    return render(request,"hod_template/manage_course_template.html",{"courses":courses})
