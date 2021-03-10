@@ -7,7 +7,9 @@
       <!-- general form elements -->
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Edit Staff {{staff.admin.user_name}}</h3>
+          <h3 class="card-title">
+            Edit Staff | Username - {{staff.admin.username}}| {{staff.admin.id}}
+          </h3>
         </div>
         <div class="row">
           {% if messages %}
@@ -32,15 +34,7 @@
                 class="form-control"
                 name="email"
                 placeholder="Enter email"
-              />
-            </div>
-            <div class="form-group">
-              <label>password</label>
-              <input
-                type="password"
-                class="form-control"
-                name="password"
-                placeholder="password"
+                value="{{staff.admin.email}}"
               />
             </div>
 
@@ -51,6 +45,7 @@
                 class="form-control"
                 name="first_name"
                 placeholder="First Name"
+                value="{{staff.admin.first_name}}"
               />
             </div>
             <div class="form-group">
@@ -60,7 +55,9 @@
                 class="form-control"
                 name="last_name"
                 placeholder="Last Name"
+                value="{{staff.admin.last_name}}"
               />
+              <input type="hidden" name="staff_id" value="{{staff.admin.id}}" />
             </div>
             <div class="form-group">
               <label>Username</label>
@@ -69,6 +66,7 @@
                 class="form-control"
                 name="username"
                 placeholder="User Name"
+                value="{{staff.admin.user_name}}"
               />
             </div>
 
@@ -79,6 +77,7 @@
                 class="form-control"
                 name="address"
                 placeholder="Adress"
+                value="{{staff.admin.address}}"
               />
             </div>
           </div>
@@ -86,7 +85,7 @@
 
           <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-block">
-              Add Staff
+              Save Staff
             </button>
           </div>
         </form>
