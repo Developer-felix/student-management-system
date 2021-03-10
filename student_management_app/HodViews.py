@@ -117,4 +117,8 @@ def add_subject_save(request):
 
 def manage_staff(request):
     staffs = Staffs.objects.all()
-    return render(request,"hod_template/manage_staff_template.html",{"staffs":staffs})
+    return render(request, "hod_template/manage_staff_template.html", {"staffs": staffs})
+
+def manage_student(request):
+    students = Student.objects.all()
+    return render(request,"hod_template/manage_student_template.html",{"students":students})
