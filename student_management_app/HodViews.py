@@ -153,7 +153,7 @@ def edit_staff_save(request):
             user.email = email
             user.save()
         
-            staff_model = Staffs.objects.get(admin=staff_id)
+            staff_model = Staffs.objects.get(id=staff_id)
             staff_model.address = address
             staff_model.save()
             
@@ -161,4 +161,48 @@ def edit_staff_save(request):
             return HttpResponseRedirect("/edit_staff/"+staff_id)
         except:
             messages.error(request, "Failed to Editing the Staff")
-            return HttpResponseRedirect("/edit_staff/"+staff_id)
+            return HttpResponseRedirect("/edit_staff/" + staff_id)
+            
+def edit_student(request, student_id):
+    courses = Courses.objects.all()
+    student = Student.objects.get(admin=student_id)
+    return render(request, 'hod_template/edit_student_template.html', {"student": student,"courses":courses})
+
+def edit_student_save(request):
+    if request.method != "POST":
+        return HttpResponse("Method Not Allowed")
+    else:
+        student_id = request.POST.get("student_id")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        username = request.POST.get("username")
+        address = request.POST.get("address")
+        course_id = request.POST.get("course")
+        session_start = request.POST.get("session_start")
+        session_end = request.POST.get("session_end")
+        sex = request.POST.get("sex")
+        try:
+            user = CustomUser.objects.get(id=student_id)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.username = username
+            user.email = email
+            user.save()
+        
+            student_model = Student.objects.get(admin=student_id)
+            student_model.address = address
+            student_model.gender = sex
+            student_model.session_start = session_start
+            student_model.session_end = session_end
+            student_model.save()
+            
+            course = Courses.objects.get(id=course_id)
+            student_model.course_id = course
+            student_model.save()
+
+            messages.success(request, "Successfully Edited the student")
+            return HttpResponseRedirect("/edit_student/"+student_id)
+        except:
+            messages.error(request, "Failed to Editing the student")
+            return HttpResponseRedirect("/edit_student/"+student_id)

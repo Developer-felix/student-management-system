@@ -8,8 +8,8 @@
       <div class="card card-primary">
         <div class="card-header">
           <h3 class="card-title">
-            Edit Staff | Username - {{staff.admin.username}}| #ID
-            {{staff.admin.id}}
+            Edit Student | Username - {{student.admin.username}}| #ID
+            {{student.admin.id}}
           </h3>
         </div>
         <div class="row">
@@ -25,7 +25,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/edit_staff_save" method="post">
+        <form role="form" action="/edit_student_save" method="post">
           {% csrf_token %}
           <div class="card-body">
             <div class="form-group">
@@ -35,7 +35,7 @@
                 class="form-control"
                 name="email"
                 placeholder="Enter email"
-                value="{{staff.admin.email}}"
+                value="{{student.admin.email}}"
               />
             </div>
 
@@ -46,7 +46,7 @@
                 class="form-control"
                 name="first_name"
                 placeholder="First Name"
-                value="{{staff.admin.first_name}}"
+                value="{{student.admin.first_name}}"
               />
             </div>
             <div class="form-group">
@@ -56,9 +56,8 @@
                 class="form-control"
                 name="last_name"
                 placeholder="Last Name"
-                value="{{staff.admin.last_name}}"
+                value="{{student.admin.last_name}}"
               />
-              <input type="hidden" name="staff_id" value="{{staff.admin.id}}" />
             </div>
             <div class="form-group">
               <label>Username</label>
@@ -67,8 +66,9 @@
                 class="form-control"
                 name="username"
                 placeholder="User Name"
-                value="{{staff.admin.username}}"
+                value="{{student.admin.username}}"
               />
+              <input type="hidden" name="student_id" value="{{student.admin.id}}" />
             </div>
 
             <div class="form-group">
@@ -78,7 +78,43 @@
                 class="form-control"
                 name="address"
                 placeholder="Adress"
-                value="{{staff.address}}"
+                value="{{student.address}}"
+              />
+            </div>
+            <div class="form-group">
+              <label>Course</label>
+              <select class="form-control" name="course">
+                {% for course in courses %}
+                <option value="{{course.id}}" {% if course.id == student.course_id.id %}   selected   {% endif %}>{{ course.course_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Sex</label>
+              <select class="form-control" name="sex">
+                <option {% if studen.gender == "Male" %}   selected   {% endif %}>Male</option>
+                <option {% if studen.gender == "Female" %}   selected   {% endif %}>Female</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Session Start</label>
+              <input
+                type="date"
+                class="form-control"
+                name="session_start"
+                placeholder="Session Start Year"
+                value="{{student.session_start_year|date:"Y-m-d"}}"
+              />
+            </div>
+            <div class="form-group">
+              <label>Session End</label>
+              <input
+                type="date"
+                class="form-control"
+                name="session_end"
+                placeholder="Session End Year"
+                value="{{student.session_end_year|date:"Y-m-d"}}"
               />
             </div>
           </div>
@@ -86,7 +122,7 @@
 
           <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-block">
-              Save Staff
+              Save Student
             </button>
           </div>
         </form>
