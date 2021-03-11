@@ -41,7 +41,7 @@ class Student(models.Model):
     # email = models.EmailField(max_length=255)
     # password = models.CharField(max_length=255)
     gender = models.CharField(max_length=255)
-    profile_pic = models.FileField(upload_to='stuent_profile_images ')
+    profile_pic = models.FileField()
     address = models.TextField()
     course_id = models.ForeignKey(Courses, on_delete=models.DO_NOTHING)
     session_start_year = models.DateField()

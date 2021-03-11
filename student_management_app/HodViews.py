@@ -2,7 +2,8 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
-from .models import CustomUser,Staffs,Courses,Student,Subject,Courses
+from .models import CustomUser, Staffs, Courses, Student, Subject, Courses
+from django.core.files.storage import FileSystemStorage
 
 def admin_home(request):
     return render(request, 'hod_template/home_content.html')
@@ -72,6 +73,11 @@ def add_student_save(request):
         session_end = request.POST.get("session_end")
         course_id = request.POST.get("course")
         sex = request.POST.get("sex")
+
+        profile_pic = request.FILES.get('profile_pic')
+        fs = FileSystemStorage()
+        filename = fs.save(profile_pic.name, profile_pic)
+        profile_pic_url = fs.url(filename)
         try:
             user = CustomUser.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email, user_type=3)
             user.student.address = address
@@ -84,7 +90,7 @@ def add_student_save(request):
             user.student.session_start_year = session_start
             user.student.session_end_year = session_end
             user.student.gender = sex
-            user.student.profile_pic = ""
+            user.student.profile_pic = profile_pic_url
             user.save()
             messages.success(request, "Successfully added Student")
             return HttpResponseRedirect("/add_student")

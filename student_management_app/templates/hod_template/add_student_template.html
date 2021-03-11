@@ -22,7 +22,12 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/add_student_save" method="post">
+        <form
+          role="form"
+          action="/add_student_save"
+          method="post"
+          enctype="enctype/form-data"
+        >
           {% csrf_token %}
           <div class="card-body">
             <div class="form-group">
@@ -112,6 +117,15 @@
                 type="date"
                 class="form-control"
                 name="session_end"
+                placeholder="Session End Year"
+              />
+            </div>
+            <div class="form-group">
+              <label>Profile Image</label>
+              <input
+                type="file"
+                class="form-control"
+                name="profile_pic"
                 placeholder="Session End Year"
               />
             </div>
