@@ -232,4 +232,17 @@ def edit_student_save(request):
             return HttpResponseRedirect("/edit_student/"+student_id)
         except:
             messages.error(request, "Failed to Editing the student")
-            return HttpResponseRedirect("/edit_student/"+student_id)
+            return HttpResponseRedirect("/edit_student/" + student_id)
+
+def edit_subject(request):
+    pass
+
+def edit_subject_save(request):
+    pass
+
+def edit_course(request,course_id):
+    courses = Courses.objects.get(id=course_id)
+    return render(request, 'hod_template/edit_course_template.html', {"courses":courses})
+
+def edit_course_save(request):
+    pass

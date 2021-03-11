@@ -22,16 +22,19 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/add_subject_save" method="post">
+        <form role="form" action="/edit_subject_save" method="post">
           {% csrf_token %}
           <div class="card-body">
             <div class="form-group">
-              <label>Subject Name</label>
+              <label
+                >Subject Name | {{course.course_name}} ID : {{course.id}}</label
+              >
               <input
                 type="text"
                 class="form-control"
                 name="subject_name"
                 placeholder="Enater Subject"
+                value="{{subject_name}}"
               />
             </div>
             <div class="form-group">
@@ -57,7 +60,7 @@
 
           <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-block">
-              Add Subject
+              Edit Subject
             </button>
           </div>
         </form>

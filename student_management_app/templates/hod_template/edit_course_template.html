@@ -1,13 +1,16 @@
 {% extends 'hod_template/base_template.html' %}{% block main_content %}
+
+<!-- {% block  header_title %} Add Course {% endblock %} -->
 <div class="content">
   <div class="container-fluid"></div>
   <div class="row">
     <!-- left column -->
     <div class="col-md-12">
       <!-- general form elements -->
+
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Add Subject</h3>
+          <h3 class="card-title">Edit Course | Course ID: {{course.id}}</h3>
         </div>
         <div class="row">
           {% if messages %}
@@ -22,42 +25,25 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/add_subject_save" method="post">
+        <form role="form" action="/edit_course_save" method="post">
           {% csrf_token %}
           <div class="card-body">
             <div class="form-group">
-              <label>Subject Name</label>
+              <label>Course Name</label>
               <input
                 type="text"
                 class="form-control"
-                name="subject_name"
-                placeholder="Enater Subject"
+                name="course"
+                placeholder="Enater Course"
+                value="{{courses.course_name}}"
               />
-            </div>
-            <div class="form-group">
-              <label>Course</label>
-              <select class="form-control" name="course">
-                {% for course in courses %}
-                <option value="{{course.id}}">{{ course.course_name }}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Staff</label>
-              <select class="form-control" name="staff">
-                {% for staff in staffs %}
-                <option value="{{staff.id}}">
-                  {{ staff.first_name }} {{ staff.first_name }}
-                </option>
-                {% endfor %}
-              </select>
             </div>
           </div>
           <!-- /.card-body -->
 
           <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-block">
-              Add Subject
+              Save Course
             </button>
           </div>
         </form>
