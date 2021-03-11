@@ -74,10 +74,20 @@ def add_student_save(request):
         course_id = request.POST.get("course")
         sex = request.POST.get("sex")
 
-        profile_pic = request.FILES.get('profile_pic')
-        fs = FileSystemStorage()
-        filename = fs.save(profile_pic.name, profile_pic)
-        profile_pic_url = fs.url(filename)
+        # profile_pic = request.FILES.get('profile_pic')
+        # fs = FileSystemStorage()
+        # filename = fs.save(profile_pic,profile_pic)
+        # profile_pic_url = fs.url(filename)
+        # Getting Profile Pic first
+            # First Check whether the file is selected or not
+            # Upload only if file is selected
+        if len(request.FILES) != 0:
+            profile_pic = request.FILES['profile_pic']
+            fs = FileSystemStorage()
+            filename = fs.save(profile_pic.name, profile_pic)
+            profile_pic_url = fs.url(filename)
+        else:
+            profile_pic_url = None
         try:
             user = CustomUser.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name, email=email, user_type=3)
             user.student.address = address
