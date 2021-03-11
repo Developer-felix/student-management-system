@@ -198,6 +198,15 @@ def edit_student_save(request):
         session_start = request.POST.get("session_start")
         session_end = request.POST.get("session_end")
         sex = request.POST.get("sex")
+
+        if len(request.FILES) != 0:
+            profile_pic = request.FILES['profile_pic']
+            fs = FileSystemStorage()
+            filename = fs.save(profile_pic.name, profile_pic)
+            profile_pic_url = fs.url(filename)
+        else:
+            profile_pic_url = None
+
         try:
             user = CustomUser.objects.get(id=student_id)
             user.first_name = first_name
@@ -211,6 +220,8 @@ def edit_student_save(request):
             student_model.gender = sex
             student_model.session_start = session_start
             student_model.session_end = session_end
+            if profile_pic_url != None:
+                student.profile_pic = profile_pic_url
             student_model.save()
             
             course = Courses.objects.get(id=course_id)

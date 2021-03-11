@@ -25,7 +25,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/edit_student_save" method="post">
+        <form role="form" action="/edit_student_save" method="post" enctype="enctype/form-data">
           {% csrf_token %}
           <div class="card-body">
             <div class="form-group">
@@ -124,6 +124,7 @@
                           class="form-control"
                           name="profile_pic"
                           placeholder="Session End Year"
+                          value="{{profile_pic}}"
                         />
                         </div>
           </div>
