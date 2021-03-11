@@ -7,7 +7,7 @@
       <!-- general form elements -->
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Add Subject</h3>
+          <h3 class="card-title">Edit Subject</h3>
         </div>
         <div class="row">
           {% if messages %}
@@ -27,7 +27,8 @@
           <div class="card-body">
             <div class="form-group">
               <label
-                >Subject Name | {{course.course_name}} ID : {{course.id}}</label
+                >Subject Name | {{subjects.subject_name}} ID :
+                {{subjects.id}}</label
               >
               <input
                 type="text"
@@ -35,6 +36,11 @@
                 name="subject_name"
                 placeholder="Enater Subject"
                 value="{{subject_name}}"
+              />
+              <input
+                type="hiden"
+                name="subject"
+                value="{{subjects.subject_id}}"
               />
             </div>
             <div class="form-group">
@@ -60,7 +66,7 @@
 
           <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-block">
-              Edit Subject
+              Save Subject
             </button>
           </div>
         </form>
