@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 import django_heroku
+import dj_database_url
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,8 +118,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+
 
 
 
@@ -141,3 +143,7 @@ AUTHENTICATION_BACKEND = ['student_management_app.EmailBackEnd.EmailBackEnd']
 #     "student_management_app.backends.EmailBackend",
 # )
 # AUTHENTICATION_BACKENDS = ['path.to.auth.module.EmailBackend']
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Activate Django-Heroku.
+django_heroku.settings(locals())
