@@ -240,19 +240,22 @@ def edit_subject_save(request):
 
 def edit_course_save(request):
     if request.method != "POST":
-        return HttpResponse("Method Not Allowed")
+        HttpResponse("Invalid Method")
     else:
+        course_id = request.POST.get('course_id')
+        course_name = request.POST.get('course')
+
         try:
-            course_id = request.POST.get("course_id")
-            course_name = request.POST.get("course")
             course = Courses.objects.get(id=course_id)
             course.course_name = course_name
             course.save()
-            messages.success(request, "Successfully Edited the course")
-            return HttpResponseRedirect("/edit_course/"+course_id)
+
+            messages.success(request, "Course Updated Successfully.")
+            return HttpResponseRedirect('/edit_course/'+course_id)
+
         except:
-            messages.error(request, "Failed to Editing the course")
-            return HttpResponseRedirect("/edit_course/"+course_id)
+            messages.error(request, "Failed to Update Course.")
+            return HttpResponseRedirect('/edit_course/'+course_id)
 
 def edit_course(request,course_id):
     courses = Courses.objects.get(id=course_id)

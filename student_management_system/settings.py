@@ -26,7 +26,7 @@ SECRET_KEY = 'b=@uj%2-x&e!&0@8d$=%tx$pm7wcv6xyg_@b)#j!jpre4vs(z1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://127.0.0.1/','kenyastudentsmanagementsystem.herokuapp.com']
 
 
 # Application definition
