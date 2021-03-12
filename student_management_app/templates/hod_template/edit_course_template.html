@@ -29,19 +29,14 @@
           {% csrf_token %}
           <div class="card-body">
             <div class="form-group">
-              <label>Course Name</label>
+              <label>Course Name </label>
               <input
                 type="text"
                 class="form-control"
                 name="course"
-                placeholder="Enater Course"
-                value="{{courses.course_name}}"
+                value="{{ course.course_name }}"
               />
-              <input
-                type="hiden"
-                name="course"
-                value="{{courses.course_id}}"
-              />
+              <input type="hidden" name="course_id" value="{{ course.id }}" />
             </div>
           </div>
           <!-- /.card-body -->
