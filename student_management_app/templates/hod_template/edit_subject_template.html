@@ -55,41 +55,29 @@
           {% endif %}
           <div class="card-body">
             <div class="form-group">
-              <label
-                >Subject Name | {{subjects.subject_name}} ID :
-                {{subjects.id}}</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                name="subject_name"
-                placeholder="Enater Subject"
-                value="{{subject_name}}"
-              />
-              <input
-                type="hiden"
-                name="subject"
-                value="{{subjects.subject_id}}"
-              />
-            </div>
-            <div class="form-group">
-              <label>Course</label>
+              <label>Subject Name </label>
+              <input type="text" class="form-control" name="subject" value="{{ subject.subject_name }}">
+          </div>
+
+          <div class="form-group">
+              <label>Course </label>
               <select class="form-control" name="course">
-                {% for course in courses %}
-                <option value="{{course.id}}">{{ course.course_name }}</option>
-                {% endfor %}
+                  {% for course in courses %}
+                      <option value="{{ course.id }}" {% if course.id == subject.course_id.id %} selected {% endif %}>{{ course.course_name }}</option>
+                  {% endfor %}
               </select>
-            </div>
-            <div class="form-group">
-              <label>Staff</label>
+          </div>
+
+          <div class="form-group">
+              <label>Staff </label>
               <select class="form-control" name="staff">
-                {% for staff in staffs %}
-                <option value="{{staff.id}}">
-                  {{ staff.first_name }} {{ staff.first_name }}
-                </option>
-                {% endfor %}
+                  {% for staff in staffs %}
+                      <option value="{{ staff.id }}" {% if staff.id == subject.staff_id.id %} selected {% endif %}>{{ staff.first_name }} {{ staff.last_name }}</option>
+                  {% endfor %}
               </select>
-            </div>
+              
+              <input type="hidden" name="subject_id" value="{{ subject.id }}" />
+          </div>
           </div>
           <!-- /.card-body -->
 

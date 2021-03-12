@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from .models import CustomUser, Staffs, Courses, Student, Subject, Courses
 from django.core.files.storage import FileSystemStorage
+from django.urls import reverse
 
 def admin_home(request):
     return render(request, 'hod_template/home_content.html')
@@ -234,13 +235,47 @@ def edit_student_save(request):
             messages.error(request, "Failed to Editing the student")
             return HttpResponseRedirect("/edit_student/" + student_id)
 
-def edit_subject(request,subject_id):
-    subjects = Subject.objects.get(id=subject_id)
-    return render(request, 'hod_template/edit_subject_template.html', {"subjects":subjects})
+def edit_subject(request, subject_id):
+    subject = Subject.objects.get(id=subject_id)
+    courses = Courses.objects.all()
+    staffs = CustomUser.objects.filter(user_type='2')
+    context = {
+        "subject": subject,
+        "courses": courses,
+        "staffs": staffs,
+        "id": subject_id
+    }
+    return render(request, 'hod_template/edit_subject_template.html', context)
 
 def edit_subject_save(request):
     if request.method != "POST":
-        return HttpResponse("Method Not Allowed")
+        HttpResponse("Invalid Method.")
+    else:
+        subject_id = request.POST.get('subject_id')
+        subject_name = request.POST.get('subject')
+        course_id = request.POST.get('course')
+        staff_id = request.POST.get('staff')
+
+        try:
+            subject = Subject.objects.get(id=subject_id)
+            subject.subject_name = subject_name
+
+            course = Courses.objects.get(id=course_id)
+            subject.course_id = course
+
+            staff = CustomUser.objects.get(id=staff_id)
+            subject.staff_id = staff
+            
+            subject.save()
+
+            messages.success(request, "Subject Updated Successfully.")
+            return HttpResponseRedirect('/edit_subject/'+subject_id)
+            # return HttpResponseRedirect(reverse("edit_subject", kwargs={"subject_id":subject_id}))
+
+        except:
+            messages.error(request, "Failed to Update Subject.")
+            # return HttpResponseRedirect(reverse("edit_subject", kwargs={"subject_id":subject_id}))
+            return HttpResponseRedirect('/edit_subject/'+subject_id)
 
 
 def edit_course(request,course_id):
