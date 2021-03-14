@@ -208,7 +208,7 @@ def edit_student_save(request):
         # Getting Profile Pic first
             # First Check whether the file is selected or not
             # Upload only if file is selected
-        if request.FILES['profile_pic']:
+        if request.FILES.get('profile_pic',False):
             profile_pic = request.FILES['profile_pic']
             fs = FileSystemStorage()
             filename = fs.save(profile_pic.name, profile_pic)
