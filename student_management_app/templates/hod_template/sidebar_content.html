@@ -48,7 +48,8 @@
           <ul class="nav nav-treeview"></ul>
         </li>
         <li class="nav-item">
-          <a href="/add_staff" class="nav-link">
+        {% url 'add_staff' as add_staff %}
+          <a href="{{ add_staff }}" class="nav-link {% if request.path == add_staff %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Add Staff
@@ -58,7 +59,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="/manage_staff" class="nav-link">
+        {% url 'manage_staff' as manage_staff %}
+          <a href="{% url "manage_staff" %}" class="nav-link {% if request.path == manage_staff %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Manage Staff
@@ -68,7 +70,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="/add_student" class="nav-link">
+        {% url 'add_student' as add_student %}
+          <a href="{% url "add_student" %}" class="nav-link {% if request.path == add_student %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Add Student
@@ -76,9 +79,10 @@
             </p>
           </a>
         </li>
-
+         
         <li class="nav-item">
-          <a href="/manage_student" class="nav-link">
+        {% url 'manage_student' as manage_student %}
+          <a href="{% url "manage_student" %}" class="nav-link {% if request.path == manage_student %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Manage Student
@@ -88,7 +92,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="/add_course" class="nav-link">
+        {% url 'add_course' as add_course %}
+          <a href="{% url "add_course" %}" class="nav-link {% if request.path == add_course %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Add Course
@@ -98,7 +103,8 @@
         </li>
 
         <li class="nav-item">
-          <a href="/manage_course" class="nav-link">
+        {% url 'manage_course' as manage_course %}
+          <a href="{% url "manage_course" %}" class="nav-link {% if request.path == manage_course %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Manage Course
@@ -107,7 +113,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/add_subject" class="nav-link">
+        {% url 'add_student' as add_student %}
+          <a href="{% url "add_subject" %}" class="nav-link {% if request.path == add_student %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Add Subject
@@ -116,7 +123,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/manage_subject" class="nav-link">
+        {% url 'manage_subject' as manage_subject %}
+          <a href="{% url "manage_subject" %}" class="nav-link {% if request.path == manage_subject %} active {% endif %}">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Manage Subject
@@ -125,7 +133,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/viewattendancereport" class="nav-link">
+          <a href="viewattendancereport"  class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               View Attendance Report
@@ -134,7 +142,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/student_feedback" class="nav-link">
+          <a href="student_feedback"  class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Student FeedBack
@@ -143,7 +151,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/staff_feedback" class="nav-link">
+          <a href="/staff_feedback"  class="nav-link">
             <i class="nav-icon fas fa-th"></i>
             <p>
               Staff FeedBack
