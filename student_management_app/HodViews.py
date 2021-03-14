@@ -13,6 +13,7 @@ def AddStaff(request):
     return render(request, 'hod_template/add_staff_template.html')
 
 
+
 def add_staff_save(request):
     if request.method != "POST":
         return HttpResponse("Method not allow")
@@ -35,7 +36,6 @@ def add_staff_save(request):
             messages.error(request,"Failed to add Staff")
             return HttpResponseRedirect("/add_staff")
             print("succcess")
-
 def add_course(request):
     return render(request, 'hod_template/add_course_template.html')
 
@@ -75,18 +75,20 @@ def add_student_save(request):
         course_id = request.POST.get("course")
         sex = request.POST.get("sex")
 
-        # profile_pic = request.FILES.get('profile_pic')
-        # fs = FileSystemStorage()
-        # filename = fs.save(profile_pic,profile_pic)
-        # profile_pic_url = fs.url(filename)
         # Getting Profile Pic first
             # First Check whether the file is selected or not
             # Upload only if file is selected
-        # if len(request.FILES) != 0:
-        profile_pic = request.FILES['profile_pic']
-        fs = FileSystemStorage()
-        filename = fs.save(profile_pic.name, profile_pic)
-        profile_pic_url = fs.url(filename)
+        if len(request.FILES) != 0:
+            profile_pic = request.FILES.get('profile_pic',False)
+            fs = FileSystemStorage()
+            filename = fs.save(profile_pic.name, profile_pic)
+            profile_pic_url = fs.url(filename)
+        else:
+            profile_pic_url = None
+        # profile_pic = request.FILES.get('profile_pic')
+        # fs = FileSystemStorage()
+        # filename = fs.save(profile_pic.name, profile_pic)
+        # profile_pic_url = fs.url(filename)
         # else:
         #     profile_pic_url = None
         try:
@@ -108,6 +110,9 @@ def add_student_save(request):
         except:
             messages.error(request, "Failed to add Student")
             return HttpResponseRedirect("/add_student")
+
+
+
 
 def add_subject(request):
     courses = Courses.objects.all()
@@ -200,7 +205,10 @@ def edit_student_save(request):
         session_end = request.POST.get("session_end")
         sex = request.POST.get("sex")
 
-        if len(request.FILES) != 0:
+        # Getting Profile Pic first
+            # First Check whether the file is selected or not
+            # Upload only if file is selected
+        if request.FILES['profile_pic']:
             profile_pic = request.FILES['profile_pic']
             fs = FileSystemStorage()
             filename = fs.save(profile_pic.name, profile_pic)
@@ -222,7 +230,7 @@ def edit_student_save(request):
             student_model.session_start = session_start
             student_model.session_end = session_end
             if profile_pic_url != None:
-                student.profile_pic = profile_pic_url
+                student_model.profile_pic = profile_pic_url
             student_model.save()
             
             course = Courses.objects.get(id=course_id)

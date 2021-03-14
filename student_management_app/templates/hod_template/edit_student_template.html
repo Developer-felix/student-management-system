@@ -15,7 +15,7 @@
        
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" action="/edit_student_save" method="post" enctype="enctype/form-data">
+        <form role="form" action="/edit_student_save" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% if messages %}
           <div class="form-group">
