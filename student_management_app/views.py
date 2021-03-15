@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 # from channels.auth import login , logout
 from student_management_app.EmailBackEnd import EmailBackEnd
+from django.urls import reverse
 
 def showDemoPage(request):
     return render(request, 'demo.html')
@@ -24,9 +25,9 @@ def doLogin(request):
             if user.user_type == "1":
                 return HttpResponseRedirect('/admin_home')
             elif user.user_type == "2":
-                return HttpResponse("Staff Login"+str(user.user_type))
+                return HttpResponseRedirect(reverse("staff_home"))
             else:
-                return HttpResponse("Student Login"+str(user.user_type))
+                return HttpResponseRedirect(reverse("student_home"))
             # return HttpResponse("Email :" + request.POST.get("email") + "Password :" + request.POST.get("password"))
         else:
             messages.error(request,"Invalid Login Details")

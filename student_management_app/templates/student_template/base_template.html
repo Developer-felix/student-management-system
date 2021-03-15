@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
-    <title>Student| Management System</title>
+    <title>Student Management System | Student Login</title>
 
     <!-- Font Awesome Icons -->
     <link
@@ -75,17 +75,17 @@ to get the desired effect
         </form>
 
         <!-- Right navbar links -->
-        {% include 'hod_template/notification_template.html' %}
+        {% include 'student_template/notification_template.html' %}
       </nav>
       <!-- /.navbar -->
 
       <!-- Main Sidebar Container -->
-      {% include 'hod_template/sidebar_content.html' with user=user id=id %}
+      {% include 'student_template/sidebar_content.html' with user=user id=id %}
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        {% include 'hod_template/content_header.html' %}
+        {% include 'student_template/content_header.html' %}
         <!-- /.content-header -->
 
         <!-- Main content -->
@@ -94,12 +94,8 @@ to get the desired effect
       </div>
       <!-- /.content-wrapper -->
 
-      <!-- Control Sidebar -->
-      {% include 'hod_template/unusesidebar.html' %}
-      <!-- /.control-sidebar -->
-
       <!-- Main Footer -->
-      {% include 'hod_template/footer.html' %}
+      {% include 'student_template/footer.html' %}
     </div>
     <!-- ./wrapper -->
 
